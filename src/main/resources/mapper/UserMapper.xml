@@ -15,5 +15,4 @@
     <select id="queryUserByName" parameterType="String" resultType="User">
         select * from User where account = #{name}
     </select>
-
 </mapper>

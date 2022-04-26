@@ -31,4 +31,28 @@ public class UserServiceImpl implements UserService {
     public User queryUserByName(String name) {
         return userMapper.queryUserByName(name);
     }
+
+    @Override
+    public boolean isTeacher(String account) {
+        if(account.charAt(0)=='5')
+            return true;
+        else
+            return false;
+    }
+
+    @Override
+    public boolean isStudent(String account) {
+        if(account.charAt(0)=='1')
+            return true;
+        else
+            return false;
+    }
+
+    @Override
+    public boolean isAdmin(String account) {
+        if(account.charAt(0)=='0')
+            return true;
+        else
+            return false;
+    }
 }

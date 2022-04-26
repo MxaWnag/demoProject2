@@ -10,4 +10,7 @@ public interface UserService {
     List<User>queryUserList();
     int insertUser(String account, String password);
     User queryUserByName(String name);
+    boolean isTeacher(String account);
+    boolean isStudent(String account);
+    boolean isAdmin(String account);
 }
