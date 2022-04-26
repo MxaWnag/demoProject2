@@ -26,4 +26,9 @@ public class UserServiceImpl implements UserService {
         return userMapper.insertUser(account,password);
 
     }
+
+    @Override
+    public User queryUserByName(String name) {
+        return userMapper.queryUserByName(name);
+    }
 }

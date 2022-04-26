@@ -9,4 +9,5 @@ public interface UserService {
     User  loginPage(String account,String password);
     List<User>queryUserList();
     int insertUser(String account, String password);
+    User queryUserByName(String name);
 }
