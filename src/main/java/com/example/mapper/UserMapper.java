@@ -12,4 +12,6 @@ public interface UserMapper {
     User loginPage(String account,String password );
     int  insertUser(String account,String password);
     List<User>queryUserList();
+    User queryUserByName(String name);
+
 }
