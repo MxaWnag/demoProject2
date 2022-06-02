@@ -15,5 +15,15 @@ public class Student {
     private String campus;
     private String department_id;
 
-
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id='" + id + '\'' +
+                ", gender='" + gender + '\'' +
+                ", grade='" + grade + '\'' +
+                ", major='" + major + '\'' +
+                ", campus='" + campus + '\'' +
+                ", department_id='" + department_id + '\'' +
+                '}';
+    }
 }

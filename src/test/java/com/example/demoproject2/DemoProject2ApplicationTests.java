@@ -48,5 +48,13 @@ class DemoProject2ApplicationTests {
        int i= studentService.updateStudentInformation(map);
        System.out.println(i);
     }
+    @Test
+    void Test1(){
+        List<Student> L = studentService.queryStudentList();
+        for (Student s :
+                L) {
+            System.out.println(s);
+        }
+    }
 
 }
