@@ -27,7 +27,7 @@ public class ShiroConfig {
         *   role:拥有某个角色权限才能访问
         * */
         Map<String,String> filterMap = new LinkedHashMap<>();
-        filterMap.put("/x/xx","authc");
+        //filterMap.put("/x/xx","authc"); //  这个xx页面无需认证就能访问
         //bean.setFilterChainDefinitionMap(filterMap);
        // bean.setLoginUrl("/xxxxxx");
         return bean;

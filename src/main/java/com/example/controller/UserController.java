@@ -4,6 +4,7 @@ import com.example.domain.User;
 import com.example.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -28,6 +29,15 @@ public class UserController {
     public String index(){
         System.out.println("欢迎来到主页");
         return "index";
+    }
+
+    @ApiOperation(value = "展示用户账号",tags = "展示当前登录的用户,用于登录2")
+    @RequestMapping(value ="/showNowUser")
+    public String  showNowUser(){
+      //  User user = (User)SecurityUtils.getSubject().getPrincipals();
+        System.out.println(SecurityUtils.getSubject().getPrincipals());
+        String as = String.valueOf(SecurityUtils.getSubject().getPrincipals());
+        return as;
     }
 
     /**
@@ -79,7 +89,6 @@ public class UserController {
         } catch (UnknownAccountException e){//用户名不存在
             model.addAttribute("msg", "用户名错误");
             //返回显示内容我都帮你写好了
-
             return "login";//表示登录页面
         }catch(IncorrectCredentialsException e){
             model.addAttribute("msg","密码错误");
@@ -88,5 +97,11 @@ public class UserController {
         }
 
     }
-
+    @ApiOperation(value = "登出方法",tags = "登出用这个")
+    @RequestMapping("/logout")
+    public String logout(){
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "退出成功";
+    }
 }

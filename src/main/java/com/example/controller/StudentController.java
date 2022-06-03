@@ -4,6 +4,7 @@ import com.example.domain.Student;
 import com.example.service.StudentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,15 @@ public class StudentController {
         return s;
     }
 
+
+    @ApiOperation(value = "通过id查询学生信息")
+    @RequestMapping(value = "/showNowStudentInformation" )
+    public Student showNowStudentInformation(){
+
+        Student s =  studentService.showStudentInformation(SecurityUtils.getSubject().getPrincipals().toString());
+        System.out.println(s.toString());
+        return s;
+    }
     /**
      *
      * @param id

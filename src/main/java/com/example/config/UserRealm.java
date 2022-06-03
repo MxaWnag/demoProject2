@@ -28,11 +28,12 @@ public class UserRealm extends AuthorizingRealm {
         System.out.println("执行了认证");
         UsernamePasswordToken userToken = (UsernamePasswordToken) token;
         User user =userService.queryUserByName(userToken.getUsername());
+        SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(user,user.getPassword(),user.getAccount());
         if(user ==null){
             //
             return null; //抛出异常 UnknownAccountException
         }//密码认证
-        return new SimpleAuthenticationInfo("",user.getPassword(),"");
+        return new SimpleAuthenticationInfo(user.getAccount(),user.getPassword(),user.getAccount());
 
     }
 }
