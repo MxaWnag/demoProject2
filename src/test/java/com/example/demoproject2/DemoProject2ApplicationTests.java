@@ -1,11 +1,9 @@
 package com.example.demoproject2;
 import com.example.controller.AdminController;
 import com.example.controller.UserController;
+import com.example.domain.Course;
 import com.example.domain.Student;
-import com.example.service.StudentService;
-import com.example.service.StudentServiceImpl;
-import com.example.service.UserService;
-import com.example.service.UserServiceImpl;
+import com.example.service.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,7 +23,10 @@ class DemoProject2ApplicationTests {
     UserController userController;
     @Autowired
     StudentServiceImpl studentService;
-
+    
+    @Autowired
+    CourseServiceImp courseServiceImp;
+    
     @Test
     void contextLoads(){
 
@@ -54,6 +55,14 @@ class DemoProject2ApplicationTests {
         for (Student s :
                 L) {
             System.out.println(s);
+        }
+    }
+    @Test
+    void Test3(){
+        List<Course> C = courseServiceImp.queryCourseList();
+        for (Course c :
+                C) {
+            System.out.println(c);
         }
     }
 
