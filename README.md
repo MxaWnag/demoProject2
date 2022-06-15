@@ -1,0 +1,8 @@
+学生教师教务信息管理系统
+学生页面在StudentController里面
+教务在ManagerController里面
+教师在TeacherController里面
+登录用UserController
+学生账号1019xxxx
+教务账号0x
+教师账号510x

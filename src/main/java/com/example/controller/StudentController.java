@@ -1,6 +1,8 @@
 package com.example.controller;
 
+import com.example.domain.Enroll;
 import com.example.domain.Student;
+import com.example.service.EnrollService;
 import com.example.service.StudentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -19,7 +21,8 @@ import java.util.Map;
 public class StudentController {
     @Autowired
     private StudentService studentService;
-
+    @Autowired
+    private EnrollService enrollService;
     @ApiOperation(value ="查询并展示所有Student")
     @GetMapping(value = "/queryStudentList")
     public List<Student> queryStudentList(){
@@ -71,6 +74,32 @@ public class StudentController {
         map.put("department_id",department_id);
         int i = studentService.updateStudentInformation(map);
         System.out.println(i);
+    }
+    @ApiOperation(value ="查询学生成绩",tags = "需要提供一个Student的id,需要已经登录才行")
+    @RequestMapping(value = "/queryEnrollList")
+    public List<Enroll> queryEnrollList(){
+        Student s =  studentService.showStudentInformation(SecurityUtils.getSubject().getPrincipals().toString());
+        return enrollService.queryEnrollList(s.getId());
+    }
+
+    /**
+     *
+     * @param course_id
+     * @param grade
+     * @param student_id
+     * 点击选课后将用三个参数添加课程,用显示出来的表中的数据就行了
+     */
+    @ApiOperation(value ="插入课程",tags = "学生选课用的")
+    @RequestMapping(value ="/insertEnroll")
+    public String insertEnroll(int course_id,String grade,int student_id){
+        enrollService.insertEnroll(course_id,grade,student_id);
+        return "插入成功学号为"+student_id;
+    }
+    @ApiOperation(value = "删除课程",tags = "退课用的")
+    @RequestMapping(value ="/deleteEnroll")
+    public String deleteEnroll(int course_id){
+            enrollService.deleteEnroll(course_id);
+            return "退课成功"+course_id;
     }
 
 

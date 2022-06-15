@@ -1,16 +1,13 @@
 package com.example.demoproject2;
-import com.example.controller.AdminController;
 import com.example.controller.UserController;
 import com.example.domain.Course;
+import com.example.domain.Enroll;
 import com.example.domain.Student;
 import com.example.service.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.sql.DataSource;
-import javax.swing.plaf.basic.BasicLabelUI;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +23,8 @@ class DemoProject2ApplicationTests {
     
     @Autowired
     CourseServiceImp courseServiceImp;
-    
+    @Autowired
+    EnrollServiceImp enrollServiceImp;
     @Test
     void contextLoads(){
 
@@ -59,11 +57,30 @@ class DemoProject2ApplicationTests {
     }
     @Test
     void Test3(){
-        List<Course> C = courseServiceImp.queryCourseList();
+    List<Course> queryCourse = courseServiceImp.queryCourseList("云计算","专业必修","王廷","2019年上半学期");
         for (Course c :
-                C) {
+                queryCourse) {
             System.out.println(c);
         }
     }
+    @Test
+    void Test4(){
+        List<Enroll> queryEnrollList = enrollServiceImp.queryEnrollList("10190448");
+        for (Enroll e :
+                queryEnrollList) {
+            System.out.println(e);
+        }
 
+    }
+    @Test
+    void Test5(){
+        enrollServiceImp.insertEnroll(112,"大三",10190448);
+    }@Test
+    void Test6(){
+        enrollServiceImp.deleteEnroll(112);
+    }
+    @Test
+    void Test7(){
+        courseServiceImp.insertCourse(113,"离散数学","专业必修","大三",5101,"1",2019);
+    }
 }

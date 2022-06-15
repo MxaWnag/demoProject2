@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.EnrollMapper">
+
+    <select id="queryEnrollList" parameterType="String"  resultType="Enroll">
+        select  * from  enroll where student_id = #{student_id}
+    </select>
+    <insert id="insertEnroll" >
+        insert into enroll (course_id,score,grade,student_id)
+        values(#{course_id},0.0,#{grade},#{student_id})
+    </insert>
+    <delete id="deleteEnroll" >
+        delete  from  enroll where course_id =#{course_id}
+    </delete>
+</mapper>

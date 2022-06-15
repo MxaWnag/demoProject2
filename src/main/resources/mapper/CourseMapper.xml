@@ -4,7 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.CourseMapper">
 
-    <select id="queryCourseList" resultType="Course">
-        select * from course
+    <select id="queryCourseList" parameterType="String"  resultType="Course">
+        select *  from course c inner join teacher t on c.teacher_id = t.id
+        inner join   semester  s    on   c.semester_id =s.id
+        where c.name =#{name} and c.type =#{type} and t.name =#{teacher_name} and s.name =#{semester_id}
     </select>
+    <insert id="insertCourse"  >
+        insert into course(id,name,type,grade,teacher_id,department_id,semester_id) values(#{id},#{name},#{type},#{grade},#{teacher_id},#{department_id},#{semester_id})
+    </insert>
 </mapper>
