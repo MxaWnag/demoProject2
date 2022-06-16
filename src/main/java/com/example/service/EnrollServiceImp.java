@@ -29,4 +29,13 @@ public class EnrollServiceImp implements EnrollService{
         return enrollMapper.deleteEnroll(course_id);
     }
 
+    @Override
+    public List<Enroll> queryClassEnrollList(int course_id, int teacher_id){
+        return enrollMapper.queryClassEnrollList(course_id, teacher_id);
+    }
+
+    @Override
+    public int updateScore(int student_id, float score){
+        return enrollMapper.updateScore(student_id, score);
+    }
 }

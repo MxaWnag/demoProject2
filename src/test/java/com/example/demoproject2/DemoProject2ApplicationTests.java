@@ -83,4 +83,17 @@ class DemoProject2ApplicationTests {
     void Test7(){
         courseServiceImp.insertCourse(113,"离散数学","专业必修","大三",5101,"1",2019);
     }
+    @Test
+    void Test8(){
+        List<Enroll> queryClassEnrollList = enrollServiceImp.queryClassEnrollList(112,5101);
+        for (Enroll e :
+                queryClassEnrollList) {
+            System.out.println(e);
+        }
+    }
+    @Test
+    void Test9(){
+        int updateScore = enrollServiceImp.updateScore(10190448, 90.5F);
+
+    }
 }

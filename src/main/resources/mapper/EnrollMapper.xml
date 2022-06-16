@@ -14,4 +14,10 @@
     <delete id="deleteEnroll" >
         delete  from  enroll where course_id =#{course_id}
     </delete>
+    <select id="queryClassEnrollList" parameterType="int" resultType="Enroll">
+        select * from enroll e join course c on e.course_id = c.id where c.teacher_id = #{teacher_id} and e.course_id = #{course_id}
+    </select>
+    <update id="updateScore">
+        update enroll set score = #{score} where student_id = #{student_id}
+    </update>
 </mapper>
