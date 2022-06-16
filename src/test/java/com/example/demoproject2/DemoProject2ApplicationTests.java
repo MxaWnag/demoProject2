@@ -39,7 +39,7 @@ class DemoProject2ApplicationTests {
         Map<String,Object> map = new HashMap<>();
         map.put("id","10190448");
         map.put("name","桂敏");
-        map.put("gender","女");
+        map.put("gender","男");
         map.put("grade","大三");
         map.put("major","计算机");
         map.put("campus","闵行");

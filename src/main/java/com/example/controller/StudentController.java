@@ -91,15 +91,19 @@ public class StudentController {
      */
     @ApiOperation(value ="插入课程",tags = "学生选课用的")
     @RequestMapping(value ="/insertEnroll")
-    public String insertEnroll(int course_id,String grade,int student_id){
+    public Map<String,Object> insertEnroll(int course_id,String grade,int student_id){
         enrollService.insertEnroll(course_id,grade,student_id);
-        return "插入成功学号为"+student_id;
+        Map<String,Object> o = new HashMap<>();
+        o.put("msg","插入成功学号为"+student_id);
+        return o;
     }
     @ApiOperation(value = "删除课程",tags = "退课用的")
     @RequestMapping(value ="/deleteEnroll")
-    public String deleteEnroll(int course_id){
+    public Map<String,Object> deleteEnroll(int course_id){
             enrollService.deleteEnroll(course_id);
-            return "退课成功"+course_id;
+            Map<String,Object>o = new HashMap<>();
+            o.put("msg","退课成功"+course_id);
+            return o;
     }
 
 

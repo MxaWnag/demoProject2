@@ -14,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Auther Max Wang
@@ -33,11 +35,13 @@ public class UserController {
 
     @ApiOperation(value = "展示用户账号",tags = "展示当前登录的用户,用于登录2")
     @RequestMapping(value ="/showNowUser")
-    public String  showNowUser(){
-      //  User user = (User)SecurityUtils.getSubject().getPrincipals();
-        System.out.println(SecurityUtils.getSubject().getPrincipals());
-        String as = String.valueOf(SecurityUtils.getSubject().getPrincipals());
-        return as;
+    public Map<String,Object>  showNowUser(){
+        Map<String,Object> o = new HashMap<>();
+        Subject subject = SecurityUtils.getSubject();
+        User userinfo = (User) subject.getPrincipal();
+        System.out.println(userinfo + "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        o.put("role",userinfo.getAccount());
+        return o;
     }
 
     /**
@@ -57,8 +61,11 @@ public class UserController {
     @ApiOperation(value ="插入一个用户",tags = "一般用不到这个，别用会出事")
     @RequestMapping(value = "/insertUser",params ={"account","password"} )
     //此方法传的是URL
-    public void insertUser(String account,String password ){
+    public Map<String,Object> insertUser(String account,String password ){
         userService.insertUser(account,password);
+        Map<String,Object> o = new HashMap<>();
+        o.put("code",0);
+        return o;
 
     }
 
@@ -71,37 +78,54 @@ public class UserController {
      */
     @ApiOperation(value = "登录方法",tags = "登录就用这个")
     @RequestMapping("/login")//整合shiro框架的登录判定，建议用这个
-    public String login(String username, String password ,Model model) {
+    public Map<String,Object> login(String username, String password , Model model) {
+        Map<String,Object> o = new HashMap<>();
+
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         try {
             subject.login(token);//执行登录方法，如果没有异常就说明ok了
             if(userService.isTeacher(username)){
-                return "jiaoshishouye";
+                o.put("code",0);
+                o.put("role","teacher");
+                return o;
             }else if(userService.isAdmin(username))
             {
-                return "guanliyuanshouye";
+                o.put("code",0);
+                o.put("role","user");
+                return o;
             }else if(userService.isStudent(username)){
-                return "xueshengshouye";
-            }else return "weizhidezhanghaoleixing";
+                o.put("code",0);
+                o.put("role","student");
+                return o;
+            }else{
+                o.put("code",-1);
+                o.put("role","weizhi");
+                return o;
+            }
 
 
         } catch (UnknownAccountException e){//用户名不存在
             model.addAttribute("msg", "用户名错误");
-            //返回显示内容我都帮你写好了
-            return "login";//表示登录页面
+            //返回显示内容我都帮你写好
+            o.put("code",-1);
+            o.put("role",null);
+            return o;
         }catch(IncorrectCredentialsException e){
             model.addAttribute("msg","密码错误");
-            return "Incorrect";//表示错误页面
-
+            o.put("code",-1);
+            o.put("role",null);
+            return o;
         }
 
     }
     @ApiOperation(value = "登出方法",tags = "登出用这个")
     @RequestMapping("/logout")
-    public String logout(){
+    public Map<String,Object> logout(){
+        Map<String,Object>o = new HashMap<>();
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
-        return "退出成功";
+        o.put("code",0);
+        return o;
     }
 }
