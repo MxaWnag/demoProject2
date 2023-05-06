@@ -108,4 +108,8 @@ class DemoProject2ApplicationTests {
     void Test10(){
         courseInformationMapper.updateCourseInformation(1,10000000,"111/11","描述测试","img测试");
     }
+    @Test
+    void Test11(){
+        courseInformationMapper.insertCourseInformation(11,"JoyChen666",10000000,"Course_test2","decs_test2","imgTest2");
+    }
 }

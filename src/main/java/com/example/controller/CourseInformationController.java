@@ -23,4 +23,8 @@ public class CourseInformationController {
         //System.out.println(Course_id);
         System.out.println(courseInformationMapper.updateCourseInformation(Course_id,Teacher_id,Course_url,Course_decs,Course_img));
     }
+    @RequestMapping(value="/insertCourse")
+    public void insertCourse(int Course_id,String Course_name,int Teacher_id,String Course_url,String Course_decs,String Course_img){
+        System.out.println(courseInformationMapper.insertCourseInformation(Course_id,Course_name,Teacher_id,Course_url,Course_decs,Course_img));
+    }
 }

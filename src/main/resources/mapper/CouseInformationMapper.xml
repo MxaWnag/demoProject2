@@ -8,7 +8,7 @@
         select *  from course_information
     </select>
     <insert id="insertCourseInformation"  >
-        insert into course(id,name,type,grade,teacher_id,department_id,semester_id) values(#{id},#{name},#{type},#{grade},#{teacher_id},#{department_id},#{semester_id})
+        insert into course_information(Course_id,Course_name,Teacher_id,Course_url,Course_decs,Course_img) values(#{Course_id},#{Course_name},#{Teacher_id},#{Course_url},#{Course_decs},#{Course_img})
     </insert>
     <update id="updateCourseInformation">
         update course_information set Teacher_id = #{Teacher_id},
