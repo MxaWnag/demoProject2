@@ -112,4 +112,8 @@ class DemoProject2ApplicationTests {
     void Test11(){
         courseInformationMapper.insertCourseInformation(11,"JoyChen666",10000000,"Course_test2","decs_test2","imgTest2");
     }
+    @Test
+    void Test12(){
+        courseInformationMapper.deleteCourse(1);
+    }
 }

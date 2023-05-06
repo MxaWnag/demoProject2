@@ -17,5 +17,7 @@
                                       Course_img = #{Course_img}
                                       where Course_id = #{Course_id}
     </update>
-
+    <delete id="deleteCourse">
+        delete  from  course_information where Course_id =#{Course_id};
+    </delete>
 </mapper>

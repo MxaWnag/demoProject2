@@ -22,7 +22,7 @@ import java.util.Map;
  * @Auther Max Wang
  */
 @RestController
-@Api(value = "User登录接口",tags = "用来登录的")
+@Api(value = "User登录接口",tags = "旧版User登录")
 public class UserController {
     @Autowired
     private UserService userService;

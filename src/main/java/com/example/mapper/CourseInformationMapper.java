@@ -13,6 +13,7 @@ public interface CourseInformationMapper {
     int updateCourseInformation(int Course_id,int Teacher_id,String Course_url,String Course_decs,String Course_img);
     int insertCourseInformation(int Course_id,String Course_name,int Teacher_id,String Course_url,String Course_decs,String Course_img);
 
+    int deleteCourse(int Course_id);
 
 }
 
