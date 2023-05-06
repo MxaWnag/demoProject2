@@ -1,8 +1,10 @@
 package com.example.demoproject2;
 import com.example.controller.UserController;
 import com.example.domain.Course;
+import com.example.domain.CourseInformation;
 import com.example.domain.Enroll;
 import com.example.domain.Student;
+import com.example.mapper.CourseInformationMapper;
 import com.example.service.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,8 @@ class DemoProject2ApplicationTests {
     CourseServiceImp courseServiceImp;
     @Autowired
     EnrollServiceImp enrollServiceImp;
+    @Autowired
+    CourseInformationMapper courseInformationMapper;
     @Test
     void contextLoads(){
 
@@ -93,7 +97,15 @@ class DemoProject2ApplicationTests {
     }
     @Test
     void Test9(){
-        int updateScore = enrollServiceImp.updateScore(10190448, 90.5F);
-
+        List<CourseInformation> queryCourseInformationList = courseInformationMapper.queryCourseInformationList();
+        for(CourseInformation C:
+            queryCourseInformationList
+        ){
+            System.out.println(C);
+        }
+    }
+    @Test
+    void Test10(){
+        courseInformationMapper.updateCourseInformation(1,10000000,"111/11","描述测试","img测试");
     }
 }
