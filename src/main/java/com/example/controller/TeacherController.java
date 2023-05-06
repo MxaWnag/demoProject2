@@ -34,14 +34,7 @@ public class TeacherController {
      * @param department_id
      * @param semester_id
      */
-    @ApiOperation(value = "申请课程",tags = "用于申请课程，得在登录后使用")
-    @RequestMapping(value ="/insertCourse")
-    public Map<String,Object> insertCourse(int id,String name,String type,String grade,int teacher_id,String department_id,int semester_id){
-        Map<String,Object>o = new HashMap<>();
-        courseService.insertCourse(id,name,type,grade,teacher_id,department_id,semester_id);
-        o.put("msg","申请成功"+id);
-        return o;
-    }
+
 
     /**
      *
