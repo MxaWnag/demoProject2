@@ -5,6 +5,7 @@ import com.example.domain.CourseInformation;
 import com.example.domain.Enroll;
 import com.example.domain.Student;
 import com.example.mapper.CourseInformationMapper;
+import com.example.mapper.UserInformationMapper;
 import com.example.service.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,8 @@ class DemoProject2ApplicationTests {
     EnrollServiceImp enrollServiceImp;
     @Autowired
     CourseInformationMapper courseInformationMapper;
+    @Autowired
+    UserInformationMapper userInformationMapper;
     @Test
     void contextLoads(){
 
@@ -116,4 +119,10 @@ class DemoProject2ApplicationTests {
     void Test12(){
         courseInformationMapper.deleteCourse(1);
     }
+
+    @Test
+    void Test13(){
+        System.out.print(userInformationMapper.deleteUserInformation(20010709));
+    }
 }
+
