@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.SystemEvaluationMapper">
+
+    <select id="querySystemEvaluationList" parameterType="String"  resultType="SystemEvaluation">
+        select *  from system_evaluation
+    </select>
+    <insert id="insertSystem"  >
+        insert into system_evaluation(S_evaluate_id,Course_name,Stu_name,Count,S_Content,Course_id,Stu_id) values(#{Evaluate_id},#{Course_name},#{Stu_name},#{Count},#{Content},#{Course_id},#{Stu_id})
+    </insert>
+
+    <delete id="deleteSystem">
+        delete  from  system_information where S_evaluate_id =#{Evaluate_id};
+    </delete>
+</mapper>

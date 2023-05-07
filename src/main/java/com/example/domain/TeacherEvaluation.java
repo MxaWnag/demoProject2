@@ -8,12 +8,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TeacherEvaluation {
-    private int evaluate_id;
+    private int Evaluate_id;
     private String Course_name;
     private String Stu_name;
     private String State;
     private String Content;
-    private String Teacher_id;
-    private String Stu_id;
+    private int Teacher_id;
+    private int Stu_id;
 
 }

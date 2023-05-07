@@ -10,5 +10,8 @@ import java.util.List;
 @Repository
 public interface SystemEvaluationMapper {
     List<SystemEvaluation> querySystemEvaluationList();
+    int insertSystem(int Evaluate_id,String Course_name,String Stu_name,int Count,String Content,int Course_id,int Stu_id);
+
+    int deleteSystem(int Evaluate_id);
 
 }

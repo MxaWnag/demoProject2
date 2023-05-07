@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@Api(value = "CourseInformation",tags = "CouseInformation")
+@Api(value = "CourseInformation",tags = "CourseInformation")
 public class CourseInformationController {
     @Autowired
     private CourseInformationMapper courseInformationMapper;
